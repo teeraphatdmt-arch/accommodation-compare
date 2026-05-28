@@ -264,5 +264,373 @@
     }
   });
 </script>
+
+<!-- ===== ACTIVITIES SECTION ===== -->
+<style>
+  .activities-wrap { max-width: 940px; margin: 48px auto 0; }
+  .act-title { font-family: 'Kanit', sans-serif; font-size: 1.3rem; color: #a8e063; text-align: center; margin-bottom: 6px; }
+  .act-sub { text-align: center; font-size: 0.8rem; color: #5a8a50; margin-bottom: 28px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .act-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  .act-section-title { grid-column: 1 / -1; font-family: 'Kanit', sans-serif; font-size: 0.78rem; color: #5a8a50; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 0 6px; border-bottom: 1px solid #243324; margin-top: 8px; }
+  .act-card { background: #162118; border: 1px solid #2a3d2a; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.25s, box-shadow 0.25s; }
+  .act-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  .act-card-img { width: 100%; height: 140px; object-fit: cover; display: block; flex-shrink: 0; }
+  .act-card-body { padding: 12px 14px 14px; flex: 1; display: flex; flex-direction: column; }
+  .act-card-desc { flex: 1; }
+  .act-card-btns { display: flex; gap: 6px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  .act-card-btns .btn { flex: 1; font-size: 0.72rem; padding: 6px 8px; min-width: 0; }
+  .act-card-btns .act-card-link { font-size: 0.72rem; color: #58c87a; text-decoration: none; white-space: nowrap; }
+  .act-card-btns .act-card-link:hover { color: #a8e063; }
+  .act-col-title { font-family: 'Kanit', sans-serif; font-size: 0.82rem; color: #7dd4a8; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #243324; }
+
+  .act-card { background: #162118; border: 1px solid #2a3d2a; border-radius: 14px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; animation: fadeUp 0.6s ease both; }
+  .act-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  .act-card-img { width: 100%; height: 130px; object-fit: cover; display: block; }
+  .act-card-img-placeholder { width: 100%; height: 130px; background: linear-gradient(135deg,#1a2e1a,#243324); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+  .act-card-body { padding: 12px 14px 14px; }
+  .act-card-name { font-family: 'Kanit', sans-serif; font-size: 0.88rem; color: #d4f5c0; margin-bottom: 3px; }
+  .act-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .act-card-rating { font-size: 0.75rem; color: #f5c842; }
+  .act-card-dist { font-size: 0.72rem; color: #5a8a50; background: #1a2e1a; border: 1px solid #2e472e; border-radius: 20px; padding: 2px 7px; }
+  .act-card-desc { font-size: 0.75rem; color: #8ab87a; line-height: 1.5; }
+  .act-card-link { display: inline-block; margin-top: 8px; font-size: 0.72rem; color: #58c87a; text-decoration: none; }
+  .act-card-link:hover { color: #a8e063; }
+</style>
+
+<div class="activities-wrap">
+  <div class="act-title">🗺️ กิจกรรมใกล้เคียง</div>
+  <div class="act-sub">ภายในรัศมี 40 กม. จากทั้งสองที่พัก</div>
+
+  <div class="act-grid">
+
+    <div class="act-section-title">🏞️ น้ำตก &amp; ธรรมชาติ</div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZN3yei3sLJoW7lp8XUkZ8guMGCbuWVbkSevJ1kq2NcCI50CNkjtjx5BEnFVgoWCri67RPxaluqssUd05xMkTGW3r34MYfdtBAcb86gAw6svPDmKluDRwpy8vLbpOfkbKeBsUFtPNaQ3uk4oNw=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">น้ำตกเจ็ดโคตร</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.8</span><span class="act-card-dist">~10 กม.</span></div>
+        <div class="act-card-desc">เดินป่า 8 กม. 7 ชั้น ข้ามลำธารหลายจุด ใช้เวลา 5–6 ชม.</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=13094879428320407459" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-krok')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZP3RMuTTN6H4Zje768kLuIOZqlc3HpQlw4oCPN-NZu1Rn8RTJzPmsrMYvH4KbHOiBHnsl3XFzATSNItcOW16dnW_UfXFVQOy-7r2smnuWmNZJnO_TXu4A8Oqd3PX4fJFLxwDC0XAMKC0tuy5A=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">น้ำตกเจ็ดสาวน้อย</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.3</span><span class="act-card-dist">~5 กม.</span></div>
+        <div class="act-card-desc">น้ำตกใกล้ที่สุด เดินป่าสั้น มีจุดแคมป์ปิ้ง บรรยากาศดีมาก</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=16960420868336751191" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-ched')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZNWNNe2-atSiJOeUCOAoxZY1odphDhkARZEa0GLHudTfEBG4cX6FrPsszUsytq_t8MdB8sMob5BSFDMFR0WgZwq2faNXPGG40xzookI5JTAlWhiP4cQv7KidY1KPKstlD6d3qk7vh283hTTsQ=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">อุทยานเจ็ดสาวน้อย</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.5</span><span class="act-card-dist">~35 กม.</span></div>
+        <div class="act-card-desc">น้ำตก 7 ชั้น ริมลำธารมวกเหล็ก เดินสบาย มีร้านอาหาร</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=17425560728687025884" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-chet')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-section-title">☕ คาเฟ่ &amp; ร้านอาหาร</div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZNm27VQLCDpd8JYjR7irZnmDTgod-MaBRMKFhyPleAim53QXXZwFBkzJT9_gL576_SeTghQW5F1X_r6QiUPbePlFU8sS-PxRrfkPZTtv1Upjbaq4_x0pgle-rah7Cyxn_e_XYRY_vAlgYRpWfwOhkXjZA=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">Cafe by Khao Hom</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 5.0</span><span class="act-card-dist">~1 กม.</span></div>
+        <div class="act-card-desc">คาเฟ่เล็กน่ารัก เจ้าของอดีตแชมป์เจ็ตสกีโลก กาแฟอร่อย</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=4986530985940099917" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-country')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZNm27VQLCDpd8JYjR7irZnmDTgod-MaBRMKFhyPleAim53QXXZwFBkzJT9_gL576_SeTghQW5F1X_r6QiUPbePlFU8sS-PxRrfkPZTtv1Upjbaq4_x0pgle-rah7Cyxn_e_XYRY_vAlgYRpWfwOhkXjZA=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">ครัว ณ ฌาน</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.8</span><span class="act-card-dist">~2 กม.</span></div>
+        <div class="act-card-desc">อาหารไทยสด แกงส้มกุ้งชะอมอร่อย บรรยากาศร่มรื่น</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=4986530985940099917" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-country')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZOoEV366Q1C_72e2mQjUIFpv_2a383KfCLbX-CrCi13kAm8tssIezo1xSurQjdxBiC3cwy6UF3FKw7OnkyQ20Mxn3Y0fE-TeVx1l8yQQv4o-U70kgqxBViNVc44VrkDdKC41v6_EEuX1jmcOzjbiHVYLA=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">Country Cafe</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.3</span><span class="act-card-dist">~3 กม.</span></div>
+        <div class="act-card-desc">คาเฟ่ริมลำธาร สวนสวย สระว่ายน้ำ อาหารอร่อย</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=752612921719773684" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-country')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-section-title">🛕 วัด &amp; สถานที่ท่องเที่ยว</div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZNLpFoQnv5HJTvFzKzqICXYYCsD676B-PIPvsc1q5Kvr0xCLNv0DdLFDOAS8oHIICqvng3gnyp-Jui4OA9xVuPkAl5mORzZsPePYnfRpgmyCisVWBf84dtr8rLKZCYcrcb_CqLl-Cubd1c8bQ=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">วัดป่าสว่างบุญ</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.6</span><span class="act-card-dist">~5 กม.</span></div>
+        <div class="act-card-desc">เจดีย์ 500 ยอด พระนอน 219 ม. ถ่ายรูปสวย เปิด 6:00–17:00</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=17375707879250361683" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-watpa')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZO8l7wkwwisMeUrDdXy8XhVkFrGkH8iq3kXvVrKQik4oDJqeHN67dYIwxYxtQc_43rGWlzE4luLlXALjj8nrYZR8D5yOt2XfMXOC55ZZbutUoafgRgUbGpj5tUKsdmD993PDLhXARaIaawx8A=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">วัดแก่งคอย</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.6</span><span class="act-card-dist">~20 กม.</span></div>
+        <div class="act-card-desc">ถ้ำนาคาสีสัน พระธาตุอินขวาน สถาปัตยกรรมประวัติศาสตร์</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=1642501189887647191" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-watkaeng')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-section-title">🏍️ กิจกรรมผจญภัย</div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZOLanz32-k9rHvBahRDB1MzpyGfvhGZ-frYgkPe4L8eYVQouiKK4y66PxoYXQG9osbIIQLyODcITQI_mhoJKeI4ABcCMsPknWntVnuyD9tdW2C_Q7KWtj5NreQHA_WV_UJfQGuqCZWtm04rhGNtplzH=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">ATV Camp ชะอม</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.7</span><span class="act-card-dist">~2 กม.</span></div>
+        <div class="act-card-desc">ATV ลุยโคลนกลางป่า 7 กม. มีไกด์นำทาง เปิดทุกวัน</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=17807880871169401038" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-atvchaom')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZOB3WsMZXfQVgNdCKymfAJGKo6J5E0ZMjs0kOkG7GPLXv20g6thAdapQzP2R-DPXpRlFaI29uxC15b8yYFQK-IwDyKjddEJ8it_vMA9-jDkx7Hb5C_diIIA-eITAzYF9KUt_I6hUEI98YKKYw=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">มวกเหล็ก ATV</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.3</span><span class="act-card-dist">~35 กม.</span></div>
+        <div class="act-card-desc">ATV ภูเขาเส้นทางขรุขระ ผ่านป่าและทางชัน ขี่ ~50 นาที</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=12852034723517901640" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-atvmuak')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZOYfZFwXaaek0afE9JPaLHt2uKDnxrpItVefhFmtE5j1osRsgLtE8R_JaK1nTZhb02r4EjD0Km4dJUzJi0NyTtgz4EKGu1-WpgFgv3tFKC_uDm37yRDjRbIf5RhegxftzMxLLbVyLxczzQ4bg=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">สระบุรีล่องแก่ง</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 3.3</span><span class="act-card-dist">~38 กม.</span></div>
+        <div class="act-card-desc">ล่องแก่ง 300 บาท/คน มีแพ็กเกจ ATV + ล่องแก่ง เปิด 8:00–15:00</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=92637025326015644" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-longraeng')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-card">
+      <img class="act-card-img" src="https://lh3.googleusercontent.com/place-photos/AJRVUZPhh-8n3-I5dFZ1PsxlfVcb_Y3s-DV_JirQy_XfpXkL_kBw9MJ3rNGPmAftEmnl26Pit_RJES69jR5OAUztvflwWr_jwqJYaF4_XWgxfYSwNBLmGmtlfFCfj-HH8TMlGOv9WXwc77Z4IhHHQA=s800-w800-h600" loading="lazy">
+      <div class="act-card-body">
+        <div class="act-card-name">Nam Pha Pa Yai</div>
+        <div class="act-card-meta"><span class="act-card-rating">★ 4.5</span><span class="act-card-dist">~30 กม.</span></div>
+        <div class="act-card-desc">คายัค SUP ปีนผา ซิปไลน์ข้ามแม่น้ำ เปิดเสาร์–อาทิตย์</div>
+        <div class="act-card-btns">
+          <a class="act-card-link" href="https://maps.google.com/?cid=16033054657763349776" target="_blank">📍 แผนที่</a>
+          <button class="btn btn-gallery" onclick="openGallery('act-kayak')">🖼️ รูปเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-act-krok" onclick="closeIfOverlay(event,'act-krok')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🏞️ น้ำตกเจ็ดโคตร</span>
+      <button class="modal-close" onclick="closeGallery('act-krok')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZN3yei3sLJoW7lp8XUkZ8guMGCbuWVbkSevJ1kq2NcCI50CNkjtjx5BEnFVgoWCri67RPxaluqssUd05xMkTGW3r34MYfdtBAcb86gAw6svPDmKluDRwpy8vLbpOfkbKeBsUFtPNaQ3uk4oNw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNN4GQjQTmLf5jW6FgcsnJ6jMQuBn1zP1yOVJQZUwcbVTwa0IO_REJO7IQ6QU22zpzCqXkzAbljNcPe6in0BPanv78bsM03NtnhSr0C-kN6mZ9XOgdlIdBZt7wR7W-yKYDjVJPHheWl_T4l4ss=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMECynDbLP8bYs0jBOr5s9XZ8fu0zqWZOFvKOaLNDlG0feLyeb2TgNMkA4zvBWSEufGsR2Wf14TIiaEdqxNqAOmc5UgfalwfQ62TxV5u6iezTRteliKlqNCUXKC-r6WPe9lwsAsLzHtaG9JDlNWvV-fdg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMDwYraagTiXjy3UJRnJoO5-fUzom978RV5HTqrouONgslTHQR-dr806sxcTH-4Bv9eq2yQUZVAXDa-rBVdK7uX-bmMXiwUSdTV2qGlh_xEPK7iSd8O_30LXEhCuqbtJpmV9uNP6uLc5pTsYSzrUrkuwg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMgHcpwuQjs8FtrEzHbVXAl40tAvVGf5BNvnKR65aT4aLgc6yCKM37w6r07-XwQb1CDmsiva9-usor-j2E33icCnZ25sPk73vgZjgRhRv3fje-7G6mKLVzctPByveOZJ1UlCiYTccpeLHga2opPk4JXcA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-ched" onclick="closeIfOverlay(event,'act-ched')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🌊 น้ำตกเจ็ดสาวน้อย</span>
+      <button class="modal-close" onclick="closeGallery('act-ched')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZP3RMuTTN6H4Zje768kLuIOZqlc3HpQlw4oCPN-NZu1Rn8RTJzPmsrMYvH4KbHOiBHnsl3XFzATSNItcOW16dnW_UfXFVQOy-7r2smnuWmNZJnO_TXu4A8Oqd3PX4fJFLxwDC0XAMKC0tuy5A=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPECqf_--IqvMR68Rr0JjfhfGkbKPL8uDCneXyB_XUzzwXhoGj-VnOYz2eucWcP4TrG6TWHkrsYBZb-LrBKTZLMEK_EFXtFg_uITrOo4EbtYEp5KtRnNj5j-G7HM_5YN8JvszK8R4yy785k=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOlhpwN3AOIRSPDnIqOrHtPRfxOoQsiq9fOvLVmGRP31MRF2Ew7yaMNqqfcAS2Tnfi1WGmklUfz90oQ3zw1KdEPlrDO_e2yLzWEniXdOijJzytIFbhkWowv4BUgwtGIaTeVsxpaHJjj59vQeg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNP1gWDQMLqWvdoapYU_AueavDxQ9db5bf0v0zunsYxCX1yWHEWYCwLkGOvn75hyHmfNtVGdLDktNMKhxq-WqRnhd6zqdkOccelqHsZJAMAdXoE3WxJqpyqyvsKi765bBc3Mkz2bzJND-8bjVmOIrAneA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNHVtf8E_W6yCDMAXPUrTk9GAHGrPPoF14Tbg5uauQEv_t_aF-cFdVeyg10u5yDmc7rda0iJKx1aAGX2DYI17VdRVHVcvmCOqaQBL5mjnBQAtNKiznMUNtiawfVlKGZ4TwyZ_V8sR4w_kPY=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-chet" onclick="closeIfOverlay(event,'act-chet')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🏕️ อุทยานแห่งชาติเจ็ดสาวน้อย</span>
+      <button class="modal-close" onclick="closeGallery('act-chet')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNWNNe2-atSiJOeUCOAoxZY1odphDhkARZEa0GLHudTfEBG4cX6FrPsszUsytq_t8MdB8sMob5BSFDMFR0WgZwq2faNXPGG40xzookI5JTAlWhiP4cQv7KidY1KPKstlD6d3qk7vh283hTTsQ=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPzjeo4CMhr34JbXF7vU3ya9W705nzP_BQEf5JECxNsBRYuDp0niU-jfKO67w9W3TgUejVsQtfT7iEXi4cTlg_e5sF3zZObe-Nf3Tui4TJNmqFbM6XjQhKW1VpALsLD87Uza_q30B46TbwGzxE=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPvbYMgwppTGsNWpndGd-uu5dg9F8esg4XTsLNZYG5sbjUo2y_i7o8HsyeD6GjeXGHUVbam7Jh-zx3GImwhT_vx4JqamGs9-PpnlLEJehIwua_TPY63C50rgNv3grRvn7evuW1bqlxtYX2JQiY=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZN00Q2IC7jm2wroqKTV4hu6LMdV1vY8l6nhWTlsSv8qllfs586GmFZTdbz11OFJ5BaYz8-2IhaGq7uHkbEIRasHFCBgnf72pUFuV4-zwIuW3d69sh4XZMiz3lPdkuxgcQNzaNt3cmdQWVTev3A=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNF29lTtyaqtGfhj29T0ivsa2xQoi6dDjmqPDwuzxO-J_H2RYpG2J9-Ta0e6sRK_0nxtwOXvwRYjSMhiOKu_9LUJwVnhuMkY68HA4ZBVB3-4DKgzIVX--28VHqMDVvIffjOr0l6TfdS8vbzih6DK1pmow=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-watpa" onclick="closeIfOverlay(event,'act-watpa')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🪷 วัดป่าสว่างบุญ</span>
+      <button class="modal-close" onclick="closeGallery('act-watpa')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNLpFoQnv5HJTvFzKzqICXYYCsD676B-PIPvsc1q5Kvr0xCLNv0DdLFDOAS8oHIICqvng3gnyp-Jui4OA9xVuPkAl5mORzZsPePYnfRpgmyCisVWBf84dtr8rLKZCYcrcb_CqLl-Cubd1c8bQ=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZN5DIXgHDntNsYtHHt55CtD9KkSONb4ONpmXYhIi791SWbcDcA0p2byS6Dl0j94c3uft8Lt_HACCHCkBNUaPxWEuA1CzA0EWTaGiqvAXReyvBo3Ps6kkd2LFcelU-zUOJFIHGWCyaiLl53qEMU=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMZeehlb_mZFX-B-pNuOF5qaExWFXP3hXl8fIBDx069Q9kEvwE7OXRkVNL-SDuLKILOhShkg-Q4mng9D-qmxPnDKqxTiOL479pRUQA5rGN9HQIZHT0WmbK2RENAyilfkj6dtQyQKTecWJZ2RA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPxjckf7z7xb4VbdcFFQZoOj8umVZ9oATSkhFPcV8pgKEXjCsPaWlgKMVjCL7FiYLl9uaJC0xU8kb28MvilNijMrO50IQzbfivcXvZ4RuiKFTO81R2beW9E6Em1HSDDoErbvaJbIpZEdf2kqJw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMU0QSz-Wz5K3MSsoQGU1KDyGBerGDSz1q4gJQ7m-jdh9ToTJzthdp69KvyFIFWKJuSGqCNhfZBvF2_nbX--9lMUFWxuU9IR1MF-5X-vAAARwqr4DnNGCQqoi7-jibbrN9FIN6hzrwHFCoT1fg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-watkaeng" onclick="closeIfOverlay(event,'act-watkaeng')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🐉 วัดแก่งคอย</span>
+      <button class="modal-close" onclick="closeGallery('act-watkaeng')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZO8l7wkwwisMeUrDdXy8XhVkFrGkH8iq3kXvVrKQik4oDJqeHN67dYIwxYxtQc_43rGWlzE4luLlXALjj8nrYZR8D5yOt2XfMXOC55ZZbutUoafgRgUbGpj5tUKsdmD993PDLhXARaIaawx8A=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMNKxYL-3K6Y1pEWDxcAZFoUG-ngT3pQHC_ZWt6qlr-A1Sb8xN41hGzNrkwg0sguVLq3n6zZMJHe0dxnZS3kP4ES8N6uNReHBeoVfUgGjgm44omC3q7-2LJRGr-ZnzPJ4lnjjd3E1C2pov_d3n1rx5xhA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPg1eL980UA655Fu6I_6O_tsP3v4lPZaQCWxkrkHn9Gx06R_hXE0Pl2FJob_fqoDMfa9Q4jG6j7JOu_wnI3H9l5tvtuHIejLXNzUnId-iQUdcu9GiYPZzrcl0KgFpS9zJ0L9aw4LgCeTUz9ByxNmIfd=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPz-EF-PhqFck8ns2g9GBLQSI_UC3iKWOZIin3rpiGHhkkZgHAfEIZ6hef1n2FQFRrAp91SQpEASUP64fE1HjwWnsVIuOONu-ZvR-xJ_2CbN2ZHYALvNW0DOr3gOaT7kn9lD4YMbeInpuswsJ4=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZP6CI660hOPJ-TvooFtKmEa2BRcVNY0RCXRxl8JVzSafotEUBDdgcKQeBkohcDZqM4NAuWPyNYD_KDKjJsGG6DYjh0t5ESvn9C89BVo40Cyt8mYxhMvYyZH3SmJ90z_i158hY5tLhEfrClyF-Q=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-country" onclick="closeIfOverlay(event,'act-country')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">☕ คาเฟ่ & ร้านอาหาร</span>
+      <button class="modal-close" onclick="closeGallery('act-country')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNm27VQLCDpd8JYjR7irZnmDTgod-MaBRMKFhyPleAim53QXXZwFBkzJT9_gL576_SeTghQW5F1X_r6QiUPbePlFU8sS-PxRrfkPZTtv1Upjbaq4_x0pgle-rah7Cyxn_e_XYRY_vAlgYRpWfwOhkXjZA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOoEV366Q1C_72e2mQjUIFpv_2a383KfCLbX-CrCi13kAm8tssIezo1xSurQjdxBiC3cwy6UF3FKw7OnkyQ20Mxn3Y0fE-TeVx1l8yQQv4o-U70kgqxBViNVc44VrkDdKC41v6_EEuX1jmcOzjbiHVYLA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNeaOZPmVq8wrxTpcduOHSBBT8rrzrKdhEAxMs1EYw_gfYZeh7DmJpsI42CWLaTlAT-UYh1OM1JdTpWewRmc2RFkeBHlMlogkdgfBD-EChFtzAuxsa9mdXMUC2ZOFY9nU--zytQpCeAgi2xb6hsT7aIQw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPX-6QrPOfDfyvUJlF4LuqNrLyJG16Vo2_ZYILeirLT1ASh0KvNCefWy5nntEstWNUv_vwMGOWvAfRkp-FXKpPxlkUed61PZH0gJxvedh04qm-vovWPAOLrcBh1I-HvO56npElL4WMReaWqyM1sKb7D=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNjwrb8w1bAkBBF6SR6z4p3gr32xDAqrfyPYlAkqPOlNg1W-Tjrv-nrq8JamSugb-UmDXLjnq2KZROn2UA_X-6ji3UaeghYykwySGVW1uX4adekzk7JYn4Btz7VBqovUjoIqGbdOV4T4VF_Ec3VX0H9fw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-atvchaom" onclick="closeIfOverlay(event,'act-atvchaom')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🏍️ ATV Camp ชะอม</span>
+      <button class="modal-close" onclick="closeGallery('act-atvchaom')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOLanz32-k9rHvBahRDB1MzpyGfvhGZ-frYgkPe4L8eYVQouiKK4y66PxoYXQG9osbIIQLyODcITQI_mhoJKeI4ABcCMsPknWntVnuyD9tdW2C_Q7KWtj5NreQHA_WV_UJfQGuqCZWtm04rhGNtplzH=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMjcuuo392CEGgSEI4rkQi1Tdqd5xbyk0VThMIreKcXTRY9vnRHL7lsFpLeUzvi94JYkFRZudSCQmirlo2t0h25-y2uUU_c1EByOPzJkDQrc5tHXNdhJmZZ-oNb4GdpCeZZU6XAR8wz0bBm603jjkd1=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZO0Cawj0r5O77ZXvYH-9DqJvWxGs3cWO-07NwkzTFK6Ywzne3y4Eb2y3HowB6gCO_Th8kOazBrNYgYmjXW-9kTC_BJOkhHQSuUFPuU5ebhbm9drrlZKKqx539w7v5aBvE56EyM4qwVYi32F0CcvXXf3tw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZO57vtc48QqMwYZGKzfn094wIwOq4YH3HQ_iRGLlCGuHvZzQxj3MFKRTiyK8Q9BjH3m2RXQZccFdtrY8PTc8OUBUOnmc2MAykCWphw_-TTIhjUPQ3GC5y-AZkWmUqSp2DrABZg5omY71n_sLibobx2jTw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOkbHdtYwg7N3E5WOoP43_pl1ZtkzFIH4i85OswVZPNgv97mn1DIZPRyIpAVibRUrOti9dsaLP3aNRFtuyYyinVz-GBlWJGET3mOWDflcVeI556epM_b5iveFlv4_uRSVX6piNeR7J6AYywQ_NsYvBYjA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-atvmuak" onclick="closeIfOverlay(event,'act-atvmuak')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🏔️ มวกเหล็ก ATV</span>
+      <button class="modal-close" onclick="closeGallery('act-atvmuak')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOB3WsMZXfQVgNdCKymfAJGKo6J5E0ZMjs0kOkG7GPLXv20g6thAdapQzP2R-DPXpRlFaI29uxC15b8yYFQK-IwDyKjddEJ8it_vMA9-jDkx7Hb5C_diIIA-eITAzYF9KUt_I6hUEI98YKKYw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOWv6kSPZDWTmIPPOXDNRUV83hRu75Oh1s0EwaUz4Tkv1QcColNF0bDjUOmtwILq1qnG0ul3xwm4RUVHXnRHgN6En2xwJwqyNPw5krOcnZVzlJPHkrRxbaJBAuOMB7j-uSmwJNWdls8kV-lZA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNyMRmNiVEzKbq4VIblv8XaH_M3EtBNefVjg7lc2DtXvF4Ry21g8LfgY51mv95hlevKj5MmCN-URYidueD7NXtd1W2585KSe7x3QG5feQhnEjfrAC3-m1dXBoJCpHJ9PP4qL4qRqzgKK05l9cqNi7CwpQ=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNY8UvZor_-tQV0_sVoufbPqxU9qeZwa58fzqJ7dfuBGsCJm3x1hdUHfa5gzvHz0usdQOvPWDVNxVyrw-GSU5187RkG_dgLSENDJbl7fhGp9P0lLUGjPYF613o1aa67eOtXdN4gxtaSO46-lXsEh6HK=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPkhuxYhd0HwgAH_BmVSIb4meTKipiAZDAEODixdtsabQycNPVdwbrsAiYZKD7C4EdtmH48oOEKiJ3Nav2SHMA4gCL6vnNc2ssZVJ4d6e60UDWW7CuBzmG5pgQqhBENBKD_lcS-Rdv_QOs92X8BoJn5mg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-longraeng" onclick="closeIfOverlay(event,'act-longraeng')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🚣 สระบุรีล่องแก่ง</span>
+      <button class="modal-close" onclick="closeGallery('act-longraeng')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOYfZFwXaaek0afE9JPaLHt2uKDnxrpItVefhFmtE5j1osRsgLtE8R_JaK1nTZhb02r4EjD0Km4dJUzJi0NyTtgz4EKGu1-WpgFgv3tFKC_uDm37yRDjRbIf5RhegxftzMxLLbVyLxczzQ4bg=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNc-4caIe03jBkR5q9ln1ZPuDmpYxHzv1GdUukdSwvBe53IiebXYcd8a24bshtP2Yht85eFl5rrbZHu3rCh6HmyNu1hrnsQKMed6Qz_-QvyIFkGtN8Q7rDd1ca7boqse2vAvnkezfWL9QX4JQ=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNawd_RsCpNT7ksxnKc3Is4Z472dlzgJ_PDJY2PefwGBsHDKJNmKVe9hINiXqXcPF3PekX6did57CLgrjlG2WbBc8ej7i3IoAuuUMxRhIISp5Zeqa17TC4NQgIs0FT5rAtLg2yq5IUxktwmqdk=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZMYc84Y8myipUe8KKvCy8VV1NoJMyZsR69tlYRK0sxKIxNZNeuvbnGJW_vg41UXVroG8Af8f5T41WUBXZgGQURpySHpU5OvMQUmko7NNuWWkw18WAcZbfGK6ISFUzJzhlJ3px4suDhR8faN=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPwIh1lYHmZGymFUoQIMkEjqTyLeVo2f0-kQ_JWd-WIUSdrjKEjZGg1p0A-V-j2yzwbtqTQP-sW-3mMbBbyHqy77_WUvGdOn5PXnsgyrAL3MaMj9RNK_cM2JiqUP-kwngSFQ6WExt8O5d6dV34=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-act-kayak" onclick="closeIfOverlay(event,'act-kayak')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🛶 Nam Pha Pa Yai — คายัค & ปีนผา</span>
+      <button class="modal-close" onclick="closeGallery('act-kayak')">✕</button>
+    </div>
+    <div class="gallery-grid" style="padding:16px">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPhh-8n3-I5dFZ1PsxlfVcb_Y3s-DV_JirQy_XfpXkL_kBw9MJ3rNGPmAftEmnl26Pit_RJES69jR5OAUztvflwWr_jwqJYaF4_XWgxfYSwNBLmGmtlfFCfj-HH8TMlGOv9WXwc77Z4IhHHQA=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPAuE9tXpGcpAuO1Ytj4T_LBGNBUH4x3fzNwdZr8ogaC7dbvSvULs0GXdLNqnZlOZfBnIojbl82FioaKfZNInbtQNUssA9S9XaCqTp2eCNzcjhi3_4_uYW8VVRNUiboyZCebf1xqSozd-tb4RMwnudv=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZP5b5AaF6ponZwLeiueVL5URYC7ryHtNFH_XVbYVARarfwcEQUHsBN6Yz1PjTftwgZnxvZKWOIiwXeX0UfnoIz8jVCD3jFT2xyeQFs082FY67gHVh78nS89V7CMQXZnwfcwlfgmHdFhAmTWAkw=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOyKTHnmsDs2rnz05xHj18OpWbf_XnWxfKjM46Rs7m5B8KqzFu7AUOpRh9GgIXW_viP_3rt2DEJw_ewnYbopa18eR4g-yHMs4gpG81R-psAQEqkja6Hs_3K_wQlBmpB761zPgz_t4wZhQSmqeE=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZPsMKneLZf2RJgUaN8fSqLffkUtbSbI1vJHxuQgs09SWN-04SliVBPzU3a9M233ojvXo8hrSAVCQE9rsO097PZRm2c4pmaM8273EImjA9xp7J_yRvwnNZ6LfKdGfpua_9-o_7Fpw4lVuxvj9A=s1200-w800-h600" alt="" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    <p class="photo-count">📸 5 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+
 </body>
 </html>
