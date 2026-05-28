@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เปรียบเทียบที่พัก</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Sarabun:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Sarabun', sans-serif; background: #0f1a10; min-height: 100vh; padding: 40px 20px; color: #e8f5e3; }
+  h1 { font-family: 'Kanit', sans-serif; font-weight: 700; font-size: 1.8rem; text-align: center; color: #a8e063; margin-bottom: 6px; }
+  .subtitle { text-align: center; font-size: 0.85rem; color: #7aab6a; margin-bottom: 40px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 940px; margin: 0 auto; }
+  .card { background: #162118; border-radius: 20px; overflow: hidden; border: 1px solid #2a3d2a; transition: transform 0.3s ease, box-shadow 0.3s ease; animation: fadeUp 0.6s ease both; }
+  .card:nth-child(2) { animation-delay: 0.15s; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .img-wrapper { overflow: hidden; position: relative; cursor: pointer; }
+  .card-img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .card:hover .card-img { transform: scale(1.04); }
+  .badge { position: absolute; top: 14px; right: 14px; background: rgba(14,22,14,0.85); border: 1px solid #a8e063; color: #a8e063; font-family: 'Kanit', sans-serif; font-size: 0.75rem; padding: 4px 10px; border-radius: 30px; backdrop-filter: blur(6px); }
+
+  /* Modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.94); z-index: 1000; align-items: flex-start; justify-content: center; padding: 20px; overflow-y: auto; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: #162118; border-radius: 20px; overflow: hidden; max-width: 860px; width: 100%; border: 1px solid #2e472e; animation: modalIn 0.3s ease; margin: auto; }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.93); } to { opacity: 1; transform: scale(1); } }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid #243324; position: sticky; top: 0; background: #162118; z-index: 2; }
+  .modal-title { font-family: 'Kanit', sans-serif; font-size: 1rem; color: #d4f5c0; }
+  .modal-close { background: none; border: none; color: #6a9460; font-size: 1.4rem; cursor: pointer; transition: color 0.2s; }
+  .modal-close:hover { color: #a8e063; }
+
+  /* Gallery */
+  .gallery-section { padding: 16px 16px 0; }
+  .gallery-section-title { font-family: 'Kanit', sans-serif; font-size: 0.72rem; color: #5a8a50; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .gallery-hero { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; cursor: zoom-in; display: block; transition: opacity 0.2s; margin-bottom: 8px; }
+  .gallery-hero:hover { opacity: 0.88; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+  .gallery-grid img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: zoom-in; display: block; transition: transform 0.25s, opacity 0.2s; }
+  .gallery-grid img:hover { transform: scale(1.04); opacity: 0.88; }
+  .photo-count { text-align: center; font-size: 0.72rem; color: #4a7a44; padding: 10px 0 18px; }
+
+  /* Lightbox */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 2000; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 93vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+  .lightbox-close { position: absolute; top: 20px; right: 24px; color: #a8e063; font-size: 2rem; cursor: pointer; background: none; border: none; }
+
+  /* Card body */
+  .card-body { padding: 22px 24px 28px; }
+  .tag { display: inline-block; background: #1a2e1a; border: 1px solid #3a5a30; color: #7dba65; font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; margin-bottom: 10px; }
+  .card-title { font-family: 'Kanit', sans-serif; font-weight: 600; font-size: 1.1rem; color: #d4f5c0; margin-bottom: 4px; }
+  .location { font-size: 0.78rem; color: #6a9460; margin-bottom: 12px; }
+  .stars { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+  .star-icons { color: #f5c842; font-size: 0.9rem; }
+  .star-score { font-family: 'Kanit', sans-serif; font-size: 0.9rem; color: #f5c842; }
+  .star-count { font-size: 0.75rem; color: #5a7a55; }
+  .divider { border: none; border-top: 1px solid #243324; margin: 12px 0; }
+  .highlights { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .highlights li { font-size: 0.82rem; color: #b5d9a8; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .highlights li::before { content: '✦'; color: #a8e063; font-size: 0.65rem; margin-top: 3px; flex-shrink: 0; }
+  .note { font-size: 0.76rem; color: #e89a50; background: rgba(232,154,80,0.1); border-left: 2px solid #e89a50; padding: 7px 10px; border-radius: 0 6px 6px 0; margin-bottom: 16px; line-height: 1.5; }
+  .info-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .info-chip { background: #1e2f1e; border: 1px solid #2e472e; border-radius: 8px; padding: 5px 10px; font-size: 0.75rem; color: #90c87a; }
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn { display: inline-block; text-align: center; padding: 10px 14px; border-radius: 10px; font-family: 'Kanit', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; flex: 1; cursor: pointer; border: none; }
+  .btn-primary { background: #a8e063; color: #0f1a10; }
+  .btn-primary:hover { background: #c5f07d; }
+  .btn-secondary { background: transparent; border: 1.5px solid #4a7a40; color: #90c87a; }
+  .btn-secondary:hover { background: #1e3020; border-color: #a8e063; color: #a8e063; }
+  .btn-gallery { background: #1e3a2a; border: 1.5px solid #3a6a4a; color: #7dd4a8; }
+  .btn-gallery:hover { background: #254535; border-color: #5aaa7a; color: #a8e8c8; }
+</style>
+</head>
+<body>
+
+<h1>🏕️ เปรียบเทียบที่พัก</h1>
+<p class="subtitle">แก่งคอย · สระบุรี</p>
+
+<div class="cards">
+
+  <!-- CARD 1: Green Love -->
+  <div class="card">
+    <div class="img-wrapper" onclick="openGallery('greenlove')">
+      <img class="card-img"
+        src="https://static.wixstatic.com/media/edccfe_31efd724b5964ed4a4d3f4d43c5260d5~mv2.jpeg/v1/fill/w_960,h_640,q_90,enc_avif,quality_auto/edccfe_31efd724b5964ed4a4d3f4d43c5260d5~mv2.jpeg"
+        alt="Green Love Garden Resort Sky View">
+      <div class="badge">🏨 รีสอร์ท</div>
+    </div>
+    <div class="card-body">
+      <div class="tag">วิวภูเขา · ทะเลหมอก</div>
+      <div class="card-title">Green Love Garden Resort</div>
+      <div class="location">📍 ต.ชะอม อ.แก่งคอย สระบุรี</div>
+      <div class="stars">
+        <span class="star-icons">★★★★★</span>
+        <span class="star-score">4.6</span>
+        <span class="star-count">(375 รีวิว)</span>
+      </div>
+      <hr class="divider">
+      <ul class="highlights">
+        <li>Sky View Villa วิวเขาใหญ่สวยงาม ลำธารใสไหลผ่านทุกหลัง</li>
+        <li>บรรยากาศสงบ เหมาะพักผ่อนหนีเมือง</li>
+        <li>มีอาหารเช้า มูกาต้า เก็บผลไม้ตามฤดูกาล / ATV</li>
+        <li>น้ำไม่แห้งตลอดปี ต่างจากรีสอร์ทใกล้เคียง</li>
+      </ul>
+      <div class="note">⚠️ ร้านสะดวกซื้อใกล้เคียงน้อย / Check-in วันหยุดอาจต้องรอคิว</div>
+      <div class="info-row">
+        <div class="info-chip">💰 ~3,300–3,500 บาท/คืน</div>
+        <div class="info-chip">📞 098-169-3502</div>
+      </div>
+      <div class="btn-group">
+        <a href="https://www.greenlovegardenresort.com/th/booking-engine" target="_blank" class="btn btn-primary">จองเลย</a>
+        <a href="https://maps.google.com/?cid=14516954092907835055" target="_blank" class="btn btn-secondary">แผนที่</a>
+        <button class="btn btn-gallery" onclick="openGallery('greenlove')">🖼️ รูปเพิ่มเติม</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: บ้านไร่พอเพียง -->
+  <div class="card">
+    <div class="img-wrapper" onclick="openGallery('baanrai')">
+      <img class="card-img"
+        src="https://lh3.googleusercontent.com/places/ANXAkqEPRR5LV7aYxnc0YTvlFmI6omq7ThA_MGtuHwa9_xHgs9WoSFIkEnQjZEA6tKjjnS3-c_EminKzqxPDU1FHlX40vovXwOY_-BA=s4800-w800-h600"
+        alt="บ้านไร่พอเพียง">
+      <div class="badge">⛺ แคมป์ปิ้ง</div>
+    </div>
+    <div class="card-body">
+      <div class="tag">Glamping · คาเฟ่ · ธรรมชาติ</div>
+      <div class="card-title">บ้านไร่พอเพียง แคมป์ปิ้ง & คาเฟ่</div>
+      <div class="location">📍 ต.ชะอม อ.แก่งคอย สระบุรี</div>
+      <div class="stars">
+        <span class="star-icons">★★★★★</span>
+        <span class="star-score">4.6</span>
+        <span class="star-count">(722 รีวิว)</span>
+      </div>
+      <hr class="divider">
+      <ul class="highlights">
+        <li>ครบจบในที่เดียว: Glamping, เต็นท์, RV Trailer + คาเฟ่</li>
+        <li>อากาศดี เขียวขจี บรรยากาศธรรมชาติ 100%</li>
+        <li>ล่องเรือคายัค / ดนตรีสดทุกคืนเสาร์ / ใส่บาตรเช้าอาทิตย์</li>
+        <li>มูกาต้าดินเนอร์อร่อย รับสัตว์เลี้ยงได้</li>
+      </ul>
+      <div class="note">⚠️ อาหารเช้าน้อยไปสำหรับราคา / สัญญาณมือถือมีเฉพาะ AIS</div>
+      <div class="info-row">
+        <div class="info-chip">💰 1,500–4,500 บาท/คืน</div>
+        <div class="info-chip">📞 099-623-9599</div>
+      </div>
+      <div class="btn-group">
+        <a href="http://www.facebook.com/baanraiporpiangcamping/" target="_blank" class="btn btn-primary">Facebook</a>
+        <a href="https://maps.google.com/?cid=3559120335531881248" target="_blank" class="btn btn-secondary">แผนที่</a>
+        <button class="btn btn-gallery" onclick="openGallery('baanrai')">🖼️ รูปเพิ่มเติม</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL: Green Love — รูปจากเว็บไซต์ทางการ -->
+<div class="modal-overlay" id="modal-greenlove" onclick="closeIfOverlay(event,'greenlove')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🏨 Green Love Garden Resort — บรรยากาศ</span>
+      <button class="modal-close" onclick="closeGallery('greenlove')">✕</button>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-section-title">Sky View Villa</div>
+      <img class="gallery-hero"
+        src="https://static.wixstatic.com/media/edccfe_11a2cd35d2764e1eb6428889d9e14c7e~mv2.jpeg/v1/fill/w_1200,h_700,q_90,enc_avif,quality_auto/edccfe_11a2cd35d2764e1eb6428889d9e14c7e~mv2.jpeg"
+        alt="Sky View Villa วิวเขา"
+        onclick="openLightbox(this.src)">
+      <div class="gallery-grid">
+        <img src="https://static.wixstatic.com/media/edccfe_31efd724b5964ed4a4d3f4d43c5260d5~mv2.jpeg/v1/fill/w_800,h_600,q_90,enc_avif,quality_auto/edccfe_31efd724b5964ed4a4d3f4d43c5260d5~mv2.jpeg" alt="Sky View 1" onclick="openLightbox(this.src)">
+        <img src="https://static.wixstatic.com/media/edccfe_fe5343271331458cb0e7a1226d1c7fcf~mv2.jpg/v1/fill/w_800,h_600,q_90,enc_avif,quality_auto/edccfe_fe5343271331458cb0e7a1226d1c7fcf~mv2.jpg" alt="Camping Cabin 1" onclick="openLightbox(this.src)">
+        <img src="https://static.wixstatic.com/media/edccfe_3424b2388406434fab245aae92adf4cf~mv2.jpg/v1/fill/w_800,h_600,q_90,enc_avif,quality_auto/edccfe_3424b2388406434fab245aae92adf4cf~mv2.jpg" alt="Camping Cabin 2" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-section-title">Villa Zone & บรรยากาศโดยรอบ</div>
+      <img class="gallery-hero"
+        src="https://static.wixstatic.com/media/edccfe_bb5dfc83d5d948f28168db73bf24c97f~mv2.jpeg/v1/fill/w_1200,h_700,q_90,enc_avif,quality_auto/edccfe_bb5dfc83d5d948f28168db73bf24c97f~mv2.jpeg"
+        alt="Villa Zone บรรยากาศ"
+        onclick="openLightbox(this.src)">
+      <div class="gallery-grid">
+        <img src="https://static.wixstatic.com/media/edccfe_0f845b1afdc44520a9e835595859fb4c~mv2.jpg/v1/fill/w_800,h_600,q_90,enc_avif,quality_auto/edccfe_0f845b1afdc44520a9e835595859fb4c~mv2.jpg" alt="Villa Zone 1" onclick="openLightbox(this.src)">
+        <img src="https://static.wixstatic.com/media/edccfe_20c32f28bf694e909291e8dd9d4ba326~mv2.jpg/v1/fill/w_800,h_600,q_90,enc_avif,quality_auto/edccfe_20c32f28bf694e909291e8dd9d4ba326~mv2.jpg" alt="Villa Zone 2" onclick="openLightbox(this.src)">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqHPucJfjWeNLHDCzy-D5AVi1WDgcWIdrMzAFAw1xPWu8R1AYbbEnwyVR8wKZokT9vXj3QUKOtO5zhDQHcGJP3zrnofy6xPAoCs=s4800-w800-h600" alt="บรรยากาศ" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+
+    <p class="photo-count">📸 9 ภาพจากเว็บไซต์ทางการ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+
+<!-- MODAL: บ้านไร่พอเพียง -->
+<div class="modal-overlay" id="modal-baanrai" onclick="closeIfOverlay(event,'baanrai')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">⛺ บ้านไร่พอเพียง — บรรยากาศ</span>
+      <button class="modal-close" onclick="closeGallery('baanrai')">✕</button>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-section-title">บรรยากาศและที่พัก</div>
+      <img class="gallery-hero"
+        src="https://lh3.googleusercontent.com/places/ANXAkqEPRR5LV7aYxnc0YTvlFmI6omq7ThA_MGtuHwa9_xHgs9WoSFIkEnQjZEA6tKjjnS3-c_EminKzqxPDU1FHlX40vovXwOY_-BA=s4800-w800-h600"
+        alt="บ้านไร่ หลัก" onclick="openLightbox(this.src)">
+      <div class="gallery-grid">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqFG7enSx1WVCtfSfjzwfZbJY75vWwef9GpKDjHTO8_afD-UhZtYozH_sP1ppl9oj_rag0xIudC1VuG3yeEdfCFnYksOHXcGCu4=s4800-w800-h600" alt="บ้านไร่ 2" onclick="openLightbox(this.src)">
+        <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZNe0bAybEFrtJxqCeYsSFDztcegkiul990AnQCjweI6PQOmUacJeewlZHDnh1qVNfqsUkqE-XKZI-dwwXQUb0U2aB7uNNQer1imVwwz-6uAyDO-PkgMiBwxHBat9CpOWixJdCkOvRKNSjjPFRn5Lugu=s4800-w800-h600" alt="บ้านไร่ 3" onclick="openLightbox(this.src)">
+        <img src="https://lh3.googleusercontent.com/place-photos/AJRVUZOD173mk7BV1IVbRC4FlcTuGOvHHmAAd_jYI6XsOLjX_piEZdp7-tQ76BO0iynSKCDQSC1_E-YmuF4sivs0nkBXNu48asvPrCUoVxyAgEyzxdtZKxnRjKddIu_VKMwkWiacPyhM0l7CvKKv=s4800-w800-h600" alt="บ้านไร่ 4" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+
+    <div class="gallery-section">
+      <div class="gallery-section-title">ธรรมชาติและกิจกรรม</div>
+      <img class="gallery-hero"
+        src="https://lh3.googleusercontent.com/places/ANXAkqEYjWLyhWO7f5oRADZDWGhco-THLPDWHNiEPHUIZrl78d0Ye_KDYfdJuWbNNzVrVQjpJfgtpJCW91d3cr1C6TpzOokfPgifFlE=s4800-w800-h600"
+        alt="บ้านไร่ ธรรมชาติ" onclick="openLightbox(this.src)">
+      <div class="gallery-grid">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqGLh120MBLvwbF4C2HUSEG_PESZFrojFiZENMKcccYGXSiVlp3gO0ZmVMYVvYlEx7OHwnBWIs9RB8iCxrVzJpEQ4USBiYoZUSk=s4800-w800-h600" alt="บ้านไร่ 5" onclick="openLightbox(this.src)">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqHNBe6nYzoTsbf8zvpnh04hMB4GpAWOo46JAn3PLjCQaH4tzEwVHuTVTSY7l7PjFJBBCAVeAmDKiUzUpSOXVWMjZ9NT8Jqgdow=s4800-w800-h600" alt="บ้านไร่ 6" onclick="openLightbox(this.src)">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqExCDS8TqQvuPjfbdBPceulXEpWuBRvlqdkSNZNGuOrPD_fKy0MKoTjj8dmMMV-IwMhu9TkKYbBMnFsoTQF0sUjMKdi0wOvx1Q=s4800-w800-h600" alt="บ้านไร่ 7" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+
+    <p class="photo-count">📸 8 ภาพ · แตะรูปเพื่อขยาย</p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openGallery(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGallery(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeIfOverlay(e, id) {
+    if (e.target === e.currentTarget) closeGallery(id);
+  }
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      ['greenlove','baanrai'].forEach(id => document.getElementById('modal-' + id).classList.remove('open'));
+      closeLightbox();
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
